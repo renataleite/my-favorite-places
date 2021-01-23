@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:id="@+id/placeRowLayout">
+    android:id="@+id/idLlPlaceRow">
 
     <androidx.cardview.widget.CardView
         android:layout_marginHorizontal="12dp"
@@ -18,11 +18,11 @@
             android:padding="12dp">
 
             <TextView
-                android:id="@+id/place_name"
+                android:id="@+id/idTvPlaceName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="13dp"
-                android:text="Place name"
+                android:text="@string/strTvPlaceName"
                 android:textColor="@color/primary"
                 android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -30,17 +30,17 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/place_description"
+                android:id="@+id/idTvPlaceDescription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Place description"
+                android:text="@string/strTvPlaceDescription"
                 android:textColor="@color/secondary"
                 android:textSize="14sp"
                 android:ellipsize="end"
                 android:maxLines="1"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/place_name" />
+                app:layout_constraintTop_toBottomOf="@+id/idTvPlaceName" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

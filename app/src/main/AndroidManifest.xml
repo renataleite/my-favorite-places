@@ -16,10 +16,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyFavoritePlaces">
         <activity
-            android:label="Add a new place"
-            android:name=".AddPlace"
-            android:parentActivityName=".MainActivity"></activity>
-        <activity
             android:name=".ListPlaces"
             android:label="List Saved Places"
             android:parentActivityName=".MainActivity" />

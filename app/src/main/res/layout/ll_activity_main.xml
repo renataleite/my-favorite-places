@@ -7,7 +7,7 @@
     android:orientation="vertical">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/idImageView"
         android:layout_width="match_parent"
         android:layout_height="290dp"
         android:contentDescription="@string/imagem_do_globo"
@@ -15,13 +15,13 @@
         app:srcCompat="@drawable/travel" />
 
     <Button
-        android:id="@+id/btnPickPlace"
+        android:id="@+id/idBtnPickPlace"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/add_a_new_place" />
 
     <Button
-        android:id="@+id/btnShowPlaces"
+        android:id="@+id/idbtnShowPlaces"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/see_your_places" />

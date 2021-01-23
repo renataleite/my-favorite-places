@@ -13,75 +13,81 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHolder> {
+// O RecyclerView.ViewHolder ajuda a criar ViewHolders que preenchem os dados para as views presentes no recyclerView.
+public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder> {
+    //declaração dos atributos da classe
+    private Context mContext;
+    private ArrayList<String> mPlace_id, mPlace_name, mPlace_description, mPlace_latitude, mPlace_longitude, mPlace_zoom;
 
-    private Context context;
-    private ArrayList<String> place_id, place_name, place_description, place_latitude, place_longitude;
+    //criu o construtor do CustomAdapter
+    public CustomAdapter(Context pContext,
+                         ArrayList<String> pPlace_id,
+                         ArrayList<String> pPlace_name,
+                         ArrayList<String> pPlace_description,
+                         ArrayList<String> pPlace_latitude,
+                         ArrayList<String> pPlace_longitude,
+                         ArrayList<String> pPlace_zoom
+    ) {
+        this.mContext = pContext;
 
-    public CustomAdapter(Context context,
-                         ArrayList<String> place_id,
-                         ArrayList<String> place_name,
-                         ArrayList<String> place_description,
-                         ArrayList<String> place_latitude,
-                         ArrayList<String> place_longitude) {
-        this.context = context;
-
-        this.place_id = place_id;
-        this.place_name = place_name;
-        this.place_description = place_description;
-        this.place_latitude = place_latitude;
-        this.place_longitude = place_longitude;
+        this.mPlace_id = pPlace_id;
+        this.mPlace_name = pPlace_name;
+        this.mPlace_description = pPlace_description;
+        this.mPlace_latitude = pPlace_latitude;
+        this.mPlace_longitude = pPlace_longitude;
+        this.mPlace_zoom = pPlace_zoom;
 
 
     }
 
+    // cria visualizações para o RecyclerView, aumentando o layout
     @NonNull
     @Override
-    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        LayoutInflater inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.place_row, parent, false);
-        return new MyViewHolder(view);
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        LayoutInflater inflater = LayoutInflater.from(mContext);
+        // Preenche cada linha do ViewHolder com o layout place_row
+        View view = inflater.inflate(R.layout.ll_place_row, parent, false);
+        return new ViewHolder(view);
     }
 
+    //é chamado ao vincular os dados às visualizações que estão sendo criadas no RecyclerView
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        holder.place_name_txt.setText(String.valueOf(place_name.get(position)));
-        holder.place_description_txt.setText(String.valueOf(place_description.get(position)));
-        holder.placeRowLayout.setOnClickListener(v -> {
-            Intent intent = new Intent(context, MapsActivity.class);
-            intent.putExtra("id", String.valueOf(place_id.get(position)));
-            intent.putExtra("name", String.valueOf(place_name.get(position)));
-            intent.putExtra("description", String.valueOf(place_description.get(position)));
-            intent.putExtra("latitude", String.valueOf(place_latitude.get(position)));
-            intent.putExtra("longitude", String.valueOf(place_longitude.get(position)));
-            context.startActivity(intent);
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        // Define os dados para as visualizações
+        holder.mTvplaceName.setText(String.valueOf(mPlace_name.get(position)));
+        holder.mTvPlaceDescription.setText(String.valueOf(mPlace_description.get(position)));
+        //define listas de cliques para itens individuais no visualizador
+        holder.mLlPlaceRow.setOnClickListener(v -> {
+            Intent intent = new Intent(mContext, MapsActivity.class);
+            intent.putExtra("id", String.valueOf(mPlace_id.get(position)));
+            intent.putExtra("name", String.valueOf(mPlace_name.get(position)));
+            intent.putExtra("description", String.valueOf(mPlace_description.get(position)));
+            intent.putExtra("latitude", String.valueOf(mPlace_latitude.get(position)));
+            intent.putExtra("longitude", String.valueOf(mPlace_longitude.get(position)));
+            intent.putExtra("zoom", String.valueOf(mPlace_zoom.get(position)));
+            mContext.startActivity(intent);
         });
     }
 
+    //mostra a quantidade de elementos da lista
     @Override
     public int getItemCount() {
-        return place_name.size();
+        return mPlace_name.size();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
+    //a classe ViewHolder ajuda a preencher os dados  de cada item do recyclerView
+    public class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView place_name_txt, place_description_txt;
-        LinearLayout placeRowLayout;
-        View view;
-//        public Item currentItem;
+        TextView mTvplaceName, mTvPlaceDescription;
+        LinearLayout mLlPlaceRow;
 
-        public MyViewHolder(@NonNull View itemView) {
+        public ViewHolder(@NonNull View itemView) {
+            //invoca o construtor da classe pai
             super(itemView);
 
-
-            view = itemView;
-            view.setOnClickListener(v -> {
-
-            });
-
-            place_name_txt = itemView.findViewById(R.id.place_name);
-            place_description_txt = itemView.findViewById(R.id.place_description);
-            placeRowLayout = itemView.findViewById(R.id.placeRowLayout);
+            mTvplaceName = itemView.findViewById(R.id.idTvPlaceName);
+            mTvPlaceDescription = itemView.findViewById(R.id.idTvPlaceDescription);
+            mLlPlaceRow = itemView.findViewById(R.id.idLlPlaceRow);
         }
     }
 }

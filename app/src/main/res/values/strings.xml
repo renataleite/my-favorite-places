@@ -9,4 +9,8 @@
     <string name="add_a_new_place">Add a new place</string>
     <string name="remove">Remove</string>
     <string name="save">Save</string>
+    <string name="strEtDescription">Short Description</string>
+    <string name="strEtName">Place name</string>
+    <string name="strTvPlaceName">Place name</string>
+    <string name="strTvPlaceDescription">Place description</string>
 </resources>

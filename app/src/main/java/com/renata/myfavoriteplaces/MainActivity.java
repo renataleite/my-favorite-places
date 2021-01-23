@@ -7,28 +7,32 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
-// Based from tutorial on: https://www.youtube.com/watch?v=J-CP7g_GwpI
-    Button btnPickPlace;
-    Button btnShowPlaces;
+    //declaração dos atributos da classe da primeira view que são os dois botões
+    Button mBtnPickPlace;
+    Button mBtnShowPlaces;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.ll_activity_main);
 
         init();
     }
 
+    /*O método init faz a associação dos atributos acima declarados com os componentes da view e
+    cria uma intent para mudança de activity para cada botão. Ao clicar no btnPickPlace abrirá a activity MapsActivity, a qual
+    mostrará o GoogleMaps e ao clicar no btnShowPlaces abrirá a activity ListPlaces, a qual lista os lugares favoritos*/
     private void init() {
-        btnPickPlace = findViewById(R.id.btnPickPlace);
-        btnShowPlaces = findViewById(R.id.btnShowPlaces);
+        //associação das variáveis com os componentes do layout
+        mBtnPickPlace = findViewById(R.id.idBtnPickPlace);
+        mBtnShowPlaces = findViewById(R.id.idbtnShowPlaces);
 
-        btnPickPlace.setOnClickListener(v -> {
+        mBtnPickPlace.setOnClickListener(v -> {
             Intent intent = new Intent(this, MapsActivity.class);
             startActivity(intent);
         });
 
-        btnShowPlaces.setOnClickListener(v -> {
+        mBtnShowPlaces.setOnClickListener(v -> {
             Intent intent = new Intent(this, ListPlaces.class);
             startActivity(intent);
         });
